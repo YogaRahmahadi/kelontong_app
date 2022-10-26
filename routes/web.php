@@ -17,6 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+//Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::resource('home', HomeController::class);
+        Route::resource('users', UserController::class);
+        Route::resource('stock', StockController::class);
+        Route::resource('transaksi', TransaksiController::class);
+        Route::resource('laba', LabaController::class);
+        // Route::get('/laporan', [PembayaranController::class, 'cetak_laporan'])->name('cetak_laporan');
+    });
+});
