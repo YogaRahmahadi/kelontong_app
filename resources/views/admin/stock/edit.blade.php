@@ -37,29 +37,29 @@
                                 </div>
                                 @endif
 
-                                <form method="post" action="/admin/stockk/{{ $barang->id }}" enctype="multipart/form-data" id="myForm">
+                                <form method="post" action="/admin/stock/{{ $stock->id }}" enctype="multipart/form-data" id="myForm">
 
                                     @csrf
                                     @method('PUT')
 
                                     <div class="form-group">
                                         <label for="nama_barang">Nama barang</label>
-                                        <input type="text" name="nama_barang" class="form-control" id="nama_barang" value="{{ $barang->nama_barang }}" aria-describedby="nama_barang" >
+                                        <input type="text" name="nama_barang" class="form-control" id="nama_barang"  aria-describedby="nama_barang" >
                                     </div>
 
                                     <div class="form-group">
                                         <label for="hargabeli">Harga Beli</label>
-                                        <input type="text" name="hargabeli" class="form-control" id="hargabeli" value="{{ $barang->hargabeli }}" aria-describedby="hargabeli" >
+                                        <input type="text" name="hargabeli" class="form-control" id="hargabeli"  aria-describedby="hargabeli" >
                                     </div>
                                     
                                     <div class="form-group">
                                         <label for="hargajual">Harga Jual</label>
-                                        <input type="text" name="hargajual" class="form-control" id="hargajual" value="{{ $barang->hargajual }}" aria-describedby="hargajual" >
+                                        <input type="text" name="hargajual" class="form-control" id="hargajual" aria-describedby="hargajual" >
                                     </div>
 
                                     <div class="form-group">
                                         <label for="keterangan">Keterangan</label>
-                                        <textarea type="text" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" >{{ $beras->keterangan }}</textarea>
+                                        <textarea type="text" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" ></textarea>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Submit</button>

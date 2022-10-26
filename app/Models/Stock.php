@@ -5,27 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Beras extends Model
+class Stock extends Model
 {
-    protected $table='beras'; 
-    protected $primaryKey = 'id_beras'; 
+    protected $table = 'stock';
+    protected $primaryKey = 'id_stock';
     /**
-    * The attributes that are mass assignable.
-    *
-    * @var array
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'nama_beras' ,
-        'hargaberas' ,
-        'berat' ,
-        'keterangan' ,
-        'photo' ,
+        'nama_barang',
+        'hargabeli',
+        'hargajual',
+        'keterangan',
     ];
-
-    public function penjualan(){
-        return $this->hasMany(Penjualan::class, 'beras_id', 'id');
-    }
-    public function keranjang(){
-        return $this->hasMany(keranjang::class, 'id_keranjang', 'id');
-    }
 }

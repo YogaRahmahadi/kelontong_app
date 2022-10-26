@@ -8,7 +8,7 @@ use Illuminate\Support\Facades;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller 
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class AdminController extends Controller
     {
         $admin = User::all(); // Mengambil semua isi tabel
         $paginate = User::orderBy('id', 'asc')->paginate(3);
-        return view('admin.home.index', ['admin' => $admin,'paginate'=>$paginate]);
+        return view('admin.home.index', ['admin' => $admin, 'paginate' => $paginate]);
     }
 
     /**
@@ -44,10 +44,11 @@ class AdminController extends Controller
         $request->validate([
             'username' => 'required',
             'name' => 'required',
+            'email' => 'required',
             'no_hp' => 'required',
         ]);
         //fungsi eloquent untuk menambah data
-        User::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
+        User::create($request->all()); //jika data berhasil ditambahkan, akan kembali ke halaman utama
         return redirect()->route('admin.home.index')
             ->with('success', 'Admin Berhasil Ditambahkan');
     }
@@ -87,20 +88,20 @@ class AdminController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-                'username' => 'required',
-                'name' => 'required',
-                'no_hp' => 'required',
-            ]);
+            'name' => 'required',
+            'email' => 'required',
+            'no_hp' => 'required',
+        ]);
         //fungsi eloquent untuk mengupdate data inputan kita
-            User::where('id', $id)
+        User::where('id', $id)
             ->update([
-                    'username' =>$request->username,
-                    'name' =>$request->name,
-                    'no_hp' =>$request->no_hp,
+                'name' => $request->name,
+                'email' => $request->email,
+                'no_hp' => $request->no_hp,
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('admin.home.index')
-                ->with('success', 'Admin Berhasil Diupdate');
+        return redirect()->route('admin.home.index')
+            ->with('success', 'Admin Berhasil Diupdate');
     }
 
     /**
@@ -114,6 +115,6 @@ class AdminController extends Controller
         //fungsi eloquent untuk menghapus data
         User::where('id', $id)->delete();
         return redirect()->route('admin.index')
-        -> with('success', 'Admin Berhasil Dihapus');
+            ->with('success', 'Admin Berhasil Dihapus');
     }
 }

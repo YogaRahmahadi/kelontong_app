@@ -23,7 +23,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <a href="/admin/produk/create" class="float-end btn btn-success">Tambah Data</a>
+                            <a href="/admin/stock/create" class="float-end btn btn-success">Tambah Data</a>
                             <h3 class="box-title">Stock</h3>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
@@ -38,7 +38,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($barang as $item)    
+                                        @foreach ($stock as $item)    
                                         <tr>
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->nama_barang }}</td>

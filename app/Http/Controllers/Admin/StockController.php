@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Beras;
+use App\Models\Stock;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
-class BerasController extends Controller
+class StockController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,9 +16,9 @@ class BerasController extends Controller
      */
     public function index()
     {
-        $beras = Beras::all(); // Mengambil semua isi tabel
-        $paginate = Beras::orderBy('id', 'asc')->paginate(3);
-        return view('admin.produk.index', ['beras' => $beras,'paginate'=>$paginate]);
+        $stock = Stock::all(); // Mengambil semua isi tabel
+        $paginate = Stock::orderBy('id', 'asc')->paginate(3);
+        return view('admin.stock.index', ['stock' => $stock, 'paginate' => $paginate]);
     }
 
     /**
@@ -28,7 +28,7 @@ class BerasController extends Controller
      */
     public function create()
     {
-        return view('admin.produk.create');
+        return view('admin.stock.create');
     }
 
     /**
@@ -41,29 +41,23 @@ class BerasController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'nama_beras' => 'required',
-            'hargaberas' => 'required',
-            'berat' => 'required',
+            'nama_barang' => 'required',
+            'hargabeli' => 'required',
+            'hargajual' => 'required',
             'keterangan' => 'required',
-            'photo' => 'required',
         ]);
-
-        if($request->file('photo')){
-            $image_name = $request->file('photo')->store('beras', 'public');
-        }
 
         //fungsi eloquent untuk menambah data
-        Beras::create([
-            'nama_beras' => $request->nama_beras,
-            'hargaberas' => $request->hargaberas,
-            'berat' => $request->berat,
+        Stock::create([
+            'nama_barang' => $request->nama_barang,
+            'hargabeli' => $request->hargabeli,
+            'hargajual' => $request->hargajual,
             'keterangan' => $request->keterangan,
-            'photo' => $image_name,
         ]);
-        
+
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->to('/admin/produk')
-            ->with('success', 'Produk Berhasil Ditambahkan');
+        return redirect()->to('/admin/stock')
+            ->with('success', 'Stock Berhasil Ditambahkan');
     }
 
     /**
@@ -72,10 +66,10 @@ class BerasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id_beras)
+    public function show($id_stock)
     {
-        $beras = Beras::where('id_beras', $id_beras)->first();
-        return view('beras.detail', compact('Beras'));
+        $stock = Stock::where('id_stock', $id_stock)->first();
+        return view('stock.detail', compact('Stock'));
     }
 
     /**
@@ -84,10 +78,10 @@ class BerasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_beras)
+    public function edit($id_stock)
     {
-        $beras = DB::table('beras')->where('id', $id_beras)->first();
-        return view('admin.produk.edit', compact('beras'));
+        $stock = DB::table('stock')->where('id', $id_stock)->first();
+        return view('admin.stock.edit', compact('stock'));
     }
 
     /**
@@ -97,35 +91,29 @@ class BerasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_beras)
+    public function update(Request $request, $id_stock)
     {
         //melakukan validasi data
         $request->validate([
-            'nama_beras' => 'required',
-            'hargaberas' => 'required',
-            'berat' => 'required',
+            'nama_barang' => 'required',
+            'hargabeli' => 'required',
+            'hargajual' => 'required',
             'keterangan' => 'required',
-            // 'photo' => 'required',
         ]);
-        $image_name = null;
-        if($request->file('photo')){
-            $image_name = $request->file('photo')->store('beras', 'public');
-        }
-        
-        $beras = Beras::where('id', $id_beras)->first();
+
+        $stock = Stock::where('id', $id_stock)->first();
         //fungsi eloquent untuk mengupdate data inputan kita
-            Beras::where('id', $id_beras)
-                ->update([
-                    'nama_beras' => $request->nama_beras,
-                    'hargaberas' => $request->hargaberas,
-                    'berat' => $request->berat,
-                    'keterangan' => $request->keterangan,
-                    'photo' => ($image_name == null) ? $beras->photo : $image_name,
+        Stock::where('id', $id_stock)
+            ->update([
+                'nama_barang' => $request->nama_barang,
+                'hargabeli' => $request->hargabeli,
+                'hargajual' => $request->hargajual,
+                'keterangan' => $request->keterangan,
             ]);
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->to('/admin/produk')
-                ->with('success', 'Produk Berhasil Diupdate');
+        return redirect()->to('/admin/stock')
+            ->with('success', 'Stock Berhasil Diupdate');
     }
 
     /**
@@ -134,11 +122,11 @@ class BerasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_beras)
+    public function destroy($id_stock)
     {
         //fungsi eloquent untuk menghapus data
-        Beras::where('id', $id_beras)->delete();
-        return redirect()->to('/admin/produk')
-            -> with('success', 'Produk Berhasil Dihapus');
+        Stock::where('id', $id_stock)->delete();
+        return redirect()->to('/admin/stock')
+            ->with('success', 'stock Berhasil Dihapus');
     }
 }
