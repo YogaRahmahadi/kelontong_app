@@ -1,6 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Admin\LabaController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\StockController;
+use App\Http\Controllers\Admin\TransaksiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,15 +23,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-<<<<<<< HEAD
 Auth::routes();
 
+Route::get('/admin/home', function () {
+    return view('admin.home.index');
+});
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-=======
+
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::resource('home', HomeController::class);
@@ -36,4 +41,3 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         // Route::get('/laporan', [PembayaranController::class, 'cetak_laporan'])->name('cetak_laporan');
     });
 });
->>>>>>> 0dfa33477dc46570d3b1cc0bf5f4551351127c93
