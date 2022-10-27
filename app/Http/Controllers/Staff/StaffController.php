@@ -19,7 +19,7 @@ class StaffController extends Controller
     {
         $staff = User::all(); // Mengambil semua isi tabel
         $paginate = User::orderBy('id', 'asc')->paginate(3);
-        return view('staff.home.index', ['staff' => $staff, 'paginate' => $paginate]);
+        return view('Staff.home.index', ['staff' => $staff, 'paginate' => $paginate]);
     }
 
     /**
@@ -42,7 +42,6 @@ class StaffController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'username' => 'required',
             'name' => 'required',
             'email' => 'required',
             'no_hp' => 'required',
@@ -115,6 +114,6 @@ class StaffController extends Controller
         //fungsi eloquent untuk menghapus data
         User::where('id', $id)->delete();
         return redirect()->route('staff.index')
-            ->with('success', 'staff Berhasil Dihapus');
+            ->with('success', 'Staff Berhasil Dihapus');
     }
 }

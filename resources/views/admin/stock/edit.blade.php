@@ -58,8 +58,18 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="keterangan">Keterangan</label>
-                                        <textarea type="text" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" ></textarea>
+                                        <label for="photo">Foto</label>
+                                        <input type="file" name="photo" class="form-control" id="photo" value="{{ $stock->photo }}" aria-describedby="photo" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="volume">Volume</label>
+                                        <textarea type="text" name="volume" class="form-control" id="volume" aria-describedby="volume" >
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="unit">Unit</label>
+                                        <select type="text" name="unit" class="form-control" id="unit" aria-describedby="unit" >
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Submit</button>

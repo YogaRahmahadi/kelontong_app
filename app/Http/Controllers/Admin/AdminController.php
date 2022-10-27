@@ -42,7 +42,6 @@ class AdminController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'username' => 'required',
             'name' => 'required',
             'email' => 'required',
             'no_hp' => 'required',

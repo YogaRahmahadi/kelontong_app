@@ -43,11 +43,6 @@
                                     @method('PUT')
 
                                     <div class="form-group">
-                                        <label for="Nim">Username</label>
-                                        <input type="text" name="username" class="form-control" id="username" value="{{ $user->username }}" aria-describedby="username" >
-                                    </div>
-
-                                    <div class="form-group">
                                         <label for="Nim">Name</label>
                                         <input type="text" name="name" class="form-control" id="name" value="{{ $user->name }}" aria-describedby="name" >
                                     </div>

@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\AdminController as HomeController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\LabaController;
+use App\Http\Controllers\Staff\StaffController;
+use App\Http\Controllers\Staff\StockController as StaffStockController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,11 +28,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/admin/home', function () {
-    return view('admin.home.index');
-});
+// Route::get('/admin/home', function () {
+//     return view('admin.home.index');
+// });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('admin')->group(function () {
@@ -43,10 +46,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::prefix('staff')->group(function () {
-        Route::resource('home', HomeController::class);
-        Route::resource('stock', StockController::class);
+    Route::controller(StaffController::class)->group(function () {
+        Route::get('staff', 'index');
     });
+    Route::resource('home', HomeController::class);
+    Route::resource('stock', StaffStockController::class);
 });
 
 Route::get('/keluar', function () {
@@ -59,6 +63,6 @@ Route::get('/keluar', function () {
     return redirect('/');
 });
 
-Route::get('/staff', function () {
-    return view([StaffController::class, 'index']);
-});
+// Route::controller(StaffController::class)->group(function () {
+//     Route::get('staff', 'index');
+// });
