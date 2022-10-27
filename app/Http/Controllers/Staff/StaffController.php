@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Staff;
 
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -8,7 +8,7 @@ use Illuminate\Support\Facades;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
-class AdminController extends Controller
+class StaffController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +17,9 @@ class AdminController extends Controller
      */
     public function index()
     {
-        $admin = User::all(); // Mengambil semua isi tabel
+        $staff = User::all(); // Mengambil semua isi tabel
         $paginate = User::orderBy('id', 'asc')->paginate(3);
-        return view('admin.home.index', ['admin' => $admin, 'paginate' => $paginate]);
+        return view('staff.home.index', ['staff' => $staff, 'paginate' => $paginate]);
     }
 
     /**
@@ -29,7 +29,7 @@ class AdminController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        return view('staff.create');
     }
 
     /**
@@ -49,8 +49,8 @@ class AdminController extends Controller
         ]);
         //fungsi eloquent untuk menambah data
         User::create($request->all()); //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('admin.home.index')
-            ->with('success', 'Admin Berhasil Ditambahkan');
+        return redirect()->route('staff.home.index')
+            ->with('success', 'staff Berhasil Ditambahkan');
     }
 
     /**
@@ -61,8 +61,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        $admin = User::where('id', $id)->first();
-        // return view('admin.home.detail', compact('admin'));
+        $staff = User::where('id', $id)->first();
+        // return view('staff.home.detail', compact('staff'));
     }
 
     /**
@@ -73,8 +73,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        $admin = DB::table('users')->where('id', $id)->first();
-        return view('admin.home.edit', compact('admin'));
+        $staff = DB::table('users')->where('id', $id)->first();
+        return view('staff.home.edit', compact('staff'));
     }
 
     /**
@@ -100,8 +100,8 @@ class AdminController extends Controller
                 'no_hp' => $request->no_hp,
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
-        return redirect()->route('admin.home.index')
-            ->with('success', 'Admin Berhasil Diupdate');
+        return redirect()->route('staff.home.index')
+            ->with('success', 'staff Berhasil Diupdate');
     }
 
     /**
@@ -114,7 +114,7 @@ class AdminController extends Controller
     {
         //fungsi eloquent untuk menghapus data
         User::where('id', $id)->delete();
-        return redirect()->route('admin.index')
-            ->with('success', 'Admin Berhasil Dihapus');
+        return redirect()->route('staff.index')
+            ->with('success', 'staff Berhasil Dihapus');
     }
 }

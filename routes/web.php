@@ -1,12 +1,12 @@
 <?php
 
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\Admin\LabaController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController as HomeController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\TransaksiController;
+use App\Http\Controllers\Admin\LabaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +38,27 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
         Route::resource('stock', StockController::class);
         Route::resource('transaksi', TransaksiController::class);
         Route::resource('laba', LabaController::class);
-        // Route::get('/laporan', [PembayaranController::class, 'cetak_laporan'])->name('cetak_laporan');
+        Route::get('/laporan', [LabaController::class, 'cetak_laporan'])->name('cetak_laporan');
     });
+});
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('staff')->group(function () {
+        Route::resource('home', HomeController::class);
+        Route::resource('stock', StockController::class);
+    });
+});
+
+Route::get('/keluar', function () {
+    Auth::logout();
+
+    request()->session()->invalidate();
+
+    request()->session()->regenerateToken();
+
+    return redirect('/');
+});
+
+Route::get('/staff', function () {
+    return view([StaffController::class, 'index']);
 });

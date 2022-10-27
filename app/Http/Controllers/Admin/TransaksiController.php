@@ -2,22 +2,23 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Penjualan;
+use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
 
-class PenjualanController extends Controller
+class TransaksiController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(){
-        $penjualan = Penjualan::all(); // Mengambil semua isi tabel
-        $paginate = Penjualan::orderBy('id', 'asc')->paginate(3);
-        return view('admin.penjualan.index', ['penjualan' => $penjualan,'paginate'=>$paginate]);
+    public function index()
+    {
+        $transaksi = Transaksi::all(); // Mengambil semua isi tabel
+        $paginate = Transaksi::orderBy('id', 'asc')->paginate(3);
+        return view('admin.transaksi.index', ['transaksi' => $transaksi, 'paginate' => $paginate]);
     }
 
     /**
@@ -27,7 +28,7 @@ class PenjualanController extends Controller
      */
     public function create()
     {
-        return view('penjualan.create');
+        return view('transaksi.create');
     }
 
     /**
@@ -40,16 +41,15 @@ class PenjualanController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'id_penjualan' => 'required',
-            'id_keranjang' => 'required',
-            'tglpenjualan' => 'required',
-            'totalongkir' => 'required',
-            'totalharga' => 'required',
+            'id_stock' => 'required',
+            'tanggal' => 'required',
+            'total' => 'required',
+            'keterangan' => 'required',
         ]);
         //fungsi eloquent untuk menambah data
-        Penjualan::create($request->all());//jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->route('penjualan.index')
-            ->with('success', 'Penjualan Berhasil Ditambahkan');
+        Transaksi::create($request->all()); //jika data berhasil ditambahkan, akan kembali ke halaman utama
+        return redirect()->route('transaksi.index')
+            ->with('success', 'transaksi Berhasil Ditambahkan');
     }
 
     /**
@@ -58,10 +58,10 @@ class PenjualanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\response
      */
-    public function show($id_penjualan)
+    public function show($id_transaksi)
     {
-        $penjualan = Penjualan::where('id', $id_penjualan)->first();
-        return view('penjualan.detail', compact('penjualan'));
+        $transaksi = Transaksi::where('id', $id_transaksi)->first();
+        return view('transaksi.detail', compact('transaksi'));
     }
 
     /**
@@ -70,10 +70,10 @@ class PenjualanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id_penjualan)
+    public function edit($id_transaksi)
     {
-        $penjualan = DB::table('penjualan')->where('id', $id_penjualan)->first();
-        return view('admin.penjualan.edit', compact('penjualan'));
+        $transaksi = DB::table('transaksi')->where('id', $id_transaksi)->first();
+        return view('admin.transaksi.edit', compact('transaksi'));
     }
 
     /**
@@ -83,27 +83,26 @@ class PenjualanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_penjualan)
+    public function update(Request $request, $id_transaksi)
     {
         //melakukan validasi data
         $request->validate([
-            'id_keranjang' => 'required',
-            'tglpenjualan' => 'required',
-            'totalongkir' => 'required',
-            'totalharga' => 'required',
+            'id_stock' => 'required',
+            'tanggal' => 'required',
+            'total' => 'required',
+            'keterangan' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
-           Penjualan::where('id', $id_penjualan)
-                ->update([
-                    'id_penjualan' => $request->id_penjualan,
-                    'id_keranjang' => $request->id_keranjang,
-                    'tglpenjualan' => $request->tglpenjualan,
-                    'totalongkir' => $request->totalongkir,
-                    'totalharga' => $request->totalharga,
+        Transaksi::where('id', $id_transaksi)
+            ->update([
+                'stock_id' => $request->id_stock,
+                'tanggal' => $request->tanggal,
+                'total' => $request->total,
+                'keterangan' => $request->keterangan,
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
-            return redirect()->route('admin.penjualan.index')
-                ->with('success', 'Pengjualan Berhasil Diupdate');
+        return redirect()->route('admin.transaksi.index')
+            ->with('success', 'Transaksi Berhasil Diupdate');
     }
 
     /**
@@ -112,10 +111,11 @@ class PenjualanController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_penjualan)
+    public function destroy($id_transaksi)
     {
         //fungsi eloquent untuk menghapus data
-        Penjualan::where('id_penjualan', $id_penjualan)->delete();return redirect()->route('penjualan.index')
-            -> with('success', 'Penjualan Berhasil Dihapus');       
+        Transaksi::where('id_transaksi', $id_transaksi)->delete();
+        return redirect()->route('transaksi.index')
+            ->with('success', 'transaksi Berhasil Dihapus');
     }
 }

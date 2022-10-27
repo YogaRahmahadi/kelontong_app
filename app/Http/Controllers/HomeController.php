@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Keranjang;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -26,6 +27,13 @@ class HomeController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('admin.home.index', ['user' => $user]);
+        return view('home', ['user' => $user]);
+    }
+
+    public static function cartCount()
+    {
+        // $cr = Keranjang::where('user_id', Auth::user()->id)->count();
+        // return $cr;
+        // return view('admin.home.index', ['user' => $user]);
     }
 }

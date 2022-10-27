@@ -8,7 +8,7 @@
         <div class="page-breadcrumb bg-white">
           <div class="row align-items-center">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Edit Stock</h4>
+                  <h4 class="page-title">Edit Profile</h4>
               </div>
           </div>
           <!-- /.col-lg-12 -->
@@ -37,32 +37,26 @@
                                 </div>
                                 @endif
 
-                                <form method="post" action="/admin/stock/{{ $stock->id }}" enctype="multipart/form-data" id="myForm">
+                                <form method="post" action="/admin/users/{{ Auth::user()->id }}" enctype="multipart/form-data" id="myForm">
 
                                     @csrf
                                     @method('PUT')
-
                                     <div class="form-group">
-                                        <label for="nama_barang">Nama barang</label>
-                                        <input type="text" name="nama_barang" class="form-control" id="nama_barang"  aria-describedby="nama_barang" >
+                                        <label for="Nim">Name</label>
+                                        <input type="text" name="name" class="form-control" id="name" value="{{ Auth::user()->name }}" aria-describedby="name" >
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="hargabeli">Harga Beli</label>
-                                        <input type="text" name="hargabeli" class="form-control" id="hargabeli"  aria-describedby="hargabeli" >
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label for="hargajual">Harga Jual</label>
-                                        <input type="text" name="hargajual" class="form-control" id="hargajual" aria-describedby="hargajual" >
+                                        <label for="Email">Email</label>
+                                        <input type="email" name="email" class="form-control" id="email" value="{{ Auth::user()->email }}" aria-describedby="email" readonly>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="keterangan">Keterangan</label>
-                                        <textarea type="text" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" ></textarea>
+                                        <label for="Nama">Phone Number</label>
+                                        <input type="text" name="no_hp" class="form-control" id="no_hp" value="{{ Auth::user()->no_hp }}" aria-describedby="no_hp" >
                                     </div>
 
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Confirm</button>
                                 </form>
                         </div>
                     </div>

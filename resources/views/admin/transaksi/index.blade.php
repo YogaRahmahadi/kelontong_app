@@ -23,6 +23,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
+                            <a href="/admin/laporan" class="float-end btn btn-success">Cetak Laporan</a>
                             <h3 class="box-title">Data Transaksi</h3>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
