@@ -73,7 +73,7 @@
                               
                               <div class="form-group mb-4">
                                   <div class="col-sm-12">
-                                      <a href="/admin/home/{{ Auth::user()->id }}/edit" class="btn btn-success">Update Profile</a>
+                                      <a href="/staff/home/{{ Auth::user()->id }}/edit" class="btn btn-success">Update Profile</a>
                                   </div>
                               </div>
                       </div>

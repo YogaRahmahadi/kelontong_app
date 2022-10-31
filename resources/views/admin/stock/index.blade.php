@@ -8,7 +8,7 @@
         <div class="page-breadcrumb bg-white">
           <div class="row align-items-center">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Produk</h4>
+                  <h4 class="page-title">Stock</h4>
               </div>
           </div>
           <!-- /.col-lg-12 -->
@@ -33,7 +33,9 @@
                                             <th class="border-top-0">Nama Barang</th>
                                             <th class="border-top-0">Harga Beli</th>
                                             <th class="border-top-0">Harga Jual</th>
-                                            <th class="border-top-0">Keterangan</th>
+                                            <th class="border-top-0">Volume</th>
+                                            <th class="border-top-0">Unit</th>
+                                            <th class="border-top-0">Foto</th>
                                             <th class="border-top-0">Action</th>
                                         </tr>
                                     </thead>
@@ -44,7 +46,11 @@
                                             <td>{{ $item->nama_barang }}</td>
                                             <td>{{ $item->hargabeli}}</td>
                                             <td>{{ $item->hargajual}}</td>
-                                            <td>{{ $item->keterangan }}</td>
+                                            <td>{{ $item->volume }}</td>
+                                            <td>{{ $item->unit }}</td>
+                                            <td>
+                                                <img src="{{ asset('storage/'.$item->photo) }}" class="w-50" alt="">
+                                            </td>
                                             <td>
                                                 <form action="/admin/stock/{{ $item->id }}" method="post">
                                                     

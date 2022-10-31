@@ -19,6 +19,7 @@ class Stock extends Model
         'hargabeli',
         'hargajual',
         'photo',
+        'satuan',
         'volume',
     ];
 }

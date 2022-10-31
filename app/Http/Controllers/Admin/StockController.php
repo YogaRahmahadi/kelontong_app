@@ -44,15 +44,23 @@ class StockController extends Controller
             'nama_barang' => 'required',
             'hargabeli' => 'required',
             'hargajual' => 'required',
-            'keterangan' => 'required',
+            'volume' => 'required',
+            'id_unit' => 'required',
+            'photo' => 'required',
         ]);
+
+        if ($request->file('photo')) {
+            $image_name = $request->file('photo')->store('stock', 'public');
+        }
 
         //fungsi eloquent untuk menambah data
         Stock::create([
             'nama_barang' => $request->nama_barang,
             'hargabeli' => $request->hargabeli,
             'hargajual' => $request->hargajual,
-            'keterangan' => $request->keterangan,
+            'volume' => $request->volume,
+            'id_unit' => $request->id_unit,
+            'photo' => $image_name,
         ]);
 
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
@@ -98,24 +106,30 @@ class StockController extends Controller
             'nama_barang' => 'required',
             'hargabeli' => 'required',
             'hargajual' => 'required',
-            'keterangan' => 'required',
+            'volume' => 'required',
+            'id_unit' => 'required',
+            'photo' => 'required',
         ]);
 
         $stock = Stock::where('id', $id_stock)->first();
+        if ($request->file('photo')) {
+            $image_name = $request->file('photo')->store('stock', 'public');
+        }
         //fungsi eloquent untuk mengupdate data inputan kita
         Stock::where('id', $id_stock)
             ->update([
                 'nama_barang' => $request->nama_barang,
                 'hargabeli' => $request->hargabeli,
                 'hargajual' => $request->hargajual,
-                'keterangan' => $request->keterangan,
+                'volume' => $request->volume,
+                'id_unit' => $request->id_unit,
+                'photo' => ($image_name == null) ? $stock->photo : $image_name,
             ]);
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->to('/admin/stock')
             ->with('success', 'Stock Berhasil Diupdate');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -127,6 +141,6 @@ class StockController extends Controller
         //fungsi eloquent untuk menghapus data
         Stock::where('id', $id_stock)->delete();
         return redirect()->to('/admin/stock')
-            ->with('success', 'stock Berhasil Dihapus');
+            ->with('success', 'Stock Berhasil Dihapus');
     }
 }
