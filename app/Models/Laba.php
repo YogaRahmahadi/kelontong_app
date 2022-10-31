@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Laba extends Model
 {
-    protected $table='laba'; 
-    protected $primaryKey = 'id_laba'; 
+    protected $table = 'laba';
+    protected $primaryKey = 'id';
     /**
-    * The attributes that are mass assignable.
-    *
-    * @var array
-    */
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
     protected $fillable = [
-        'tanggal' ,
+        'tanggal',
         'uang_masuk',
-        'uang_keluar' ,
-        'laba' ,
+        'uang_keluar',
+        'laba',
     ];
 }

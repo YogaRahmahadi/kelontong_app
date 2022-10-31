@@ -18,7 +18,9 @@ class CreateStockTable extends Migration
             $table->string('nama_barang', 25)->index;
             $table->double('hargabeli');
             $table->double('hargajual');
-            $table->string('keterangan', 50);
+            $table->string('photo');
+            $table->foreign('satuan')->references('satuan')->on('unit');
+            $table->integer('volume');
             $table->timestamps();
         });
     }

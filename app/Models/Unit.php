@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Stock extends Model
+class Unit extends Model
 {
-    protected $table = 'stock';
+    protected $table = 'unit';
     protected $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
@@ -15,10 +15,6 @@ class Stock extends Model
      * @var array
      */
     protected $fillable = [
-        'nama_barang',
-        'hargabeli',
-        'hargajual',
-        'photo',
-        'volume',
+        'satuan',
     ];
 }

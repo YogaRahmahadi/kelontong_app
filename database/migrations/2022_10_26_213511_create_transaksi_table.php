@@ -15,7 +15,7 @@ class CreateTransaksiTable extends Migration
     {
         Schema::create('transaksi', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('stock_id')->references('id')->on('stock');
+            $table->foreignId('stock_id')->constrained();
             $table->date('date_order');
             $table->double('total');
             $table->string('keterangan', 50);
