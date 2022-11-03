@@ -60,15 +60,22 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="volume">Volume</label>
-                                        <textarea type="text" name="volume" class="form-control" id="volume" aria-describedby="volume" >
+                                        <label for="volume">volume</label>
+                                        <input type="text" name="volume" class="form-control" id="volume" aria-describedby="volume" >
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="unit">Unit</label>
-                                        <select type="text" name="unit" class="form-control" id="unit" aria-describedby="unit" >
+                                    <div class="form-group row">
+                                        <label for="unit" class="col-md-4 col-form-label">Unit</label>
+                                
+                                        <div class="col-md-6">
+                                            <select name="unit" id="unit" class="form-control">
+                                                <option value="">== Select Unit ==</option>
+                                                @foreach ($unit as $id => $satuan)
+                                                    <option value="{{ $id }}">{{ $satuan }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
-                                    
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>

@@ -63,8 +63,8 @@
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="volume">Volume</label>
-                                        <textarea type="text" name="volume" class="form-control" id="volume" aria-describedby="volume" >
+                                        <label for="volume">volume</label>
+                                        <input type="text" name="volume" class="form-control" id="volume" aria-describedby="volume" >
                                     </div>
 
                                     <div class="form-group">

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Stock extends Model
 {
-    protected $table = 'stock';
+    protected $table = 'stocks';
     protected $primaryKey = 'id';
     /**
      * The attributes that are mass assignable.
@@ -22,4 +22,9 @@ class Stock extends Model
         'satuan',
         'volume',
     ];
+
+    public function units()
+    {
+        return $this->belongsTo(unit::class, 'satuan', 'satuan');
+    }
 }

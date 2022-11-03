@@ -13,11 +13,13 @@ class CreateTransaksiTable extends Migration
      */
     public function up()
     {
-        Schema::create('transaksi', function (Blueprint $table) {
+        Schema::create('transaksis', function (Blueprint $table) {
             $table->id();
+            // $table->bigIncrements('stock_id')->nullable();
+            // $table->foreign('stock_id')->references('id')->on('stock');
             $table->foreignId('stock_id')->constrained();
             $table->date('date_order');
-            $table->double('total');
+            $table->float('total');
             $table->string('keterangan', 50);
             $table->timestamps();
         });

@@ -18,7 +18,7 @@ class StockController extends Controller
     {
         $stock = Stock::all(); // Mengambil semua isi tabel
         $paginate = Stock::orderBy('id', 'asc')->paginate(3);
-        return view('admin.stock.index', ['stock' => $stock, 'paginate' => $paginate]);
+        return view('admin.stock.index', ['stocks' => $stock, 'paginate' => $paginate]);
     }
 
     /**
@@ -45,12 +45,12 @@ class StockController extends Controller
             'hargabeli' => 'required',
             'hargajual' => 'required',
             'volume' => 'required',
-            'id_unit' => 'required',
+            'satuan' => 'required',
             'photo' => 'required',
         ]);
 
         if ($request->file('photo')) {
-            $image_name = $request->file('photo')->store('stock', 'public');
+            $image_name = $request->file('photo')->store('stocks', 'public');
         }
 
         //fungsi eloquent untuk menambah data
@@ -59,7 +59,7 @@ class StockController extends Controller
             'hargabeli' => $request->hargabeli,
             'hargajual' => $request->hargajual,
             'volume' => $request->volume,
-            'id_unit' => $request->id_unit,
+            'satuan' => $request->satuan,
             'photo' => $image_name,
         ]);
 
@@ -77,7 +77,7 @@ class StockController extends Controller
     public function show($id_stock)
     {
         $stock = Stock::where('id_stock', $id_stock)->first();
-        return view('stock.detail', compact('Stock'));
+        return view('stock.detail', compact('Stocks'));
     }
 
     /**
@@ -88,8 +88,8 @@ class StockController extends Controller
      */
     public function edit($id_stock)
     {
-        $stock = DB::table('stock')->where('id', $id_stock)->first();
-        return view('admin.stock.edit', compact('stock'));
+        $stock = DB::table('stocks')->where('id', $id_stock)->first();
+        return view('admin.stock.edit', compact('stocks'));
     }
 
     /**
@@ -107,13 +107,13 @@ class StockController extends Controller
             'hargabeli' => 'required',
             'hargajual' => 'required',
             'volume' => 'required',
-            'id_unit' => 'required',
+            'satuan' => 'required',
             'photo' => 'required',
         ]);
 
         $stock = Stock::where('id', $id_stock)->first();
         if ($request->file('photo')) {
-            $image_name = $request->file('photo')->store('stock', 'public');
+            $image_name = $request->file('photo')->store('stocks', 'public');
         }
         //fungsi eloquent untuk mengupdate data inputan kita
         Stock::where('id', $id_stock)
@@ -122,7 +122,7 @@ class StockController extends Controller
                 'hargabeli' => $request->hargabeli,
                 'hargajual' => $request->hargajual,
                 'volume' => $request->volume,
-                'id_unit' => $request->id_unit,
+                'satuan' => $request->satuan,
                 'photo' => ($image_name == null) ? $stock->photo : $image_name,
             ]);
 

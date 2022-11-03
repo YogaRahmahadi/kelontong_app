@@ -13,13 +13,12 @@ class CreateStockTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock', function (Blueprint $table) {
+        Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->string('nama_barang', 25)->index;
             $table->double('hargabeli');
             $table->double('hargajual');
             $table->string('photo');
-            $table->foreign('satuan')->references('satuan')->on('unit');
             $table->integer('volume');
             $table->timestamps();
         });

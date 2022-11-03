@@ -13,10 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('units', function (Blueprint $table) {
-            $table->id();
-            $table->string('satuan');
-            $table->timestamps();
+        Schema::table('stocks', function (Blueprint $table) {
+            // $table->bigIncrements('unit_id')->after('photo')->nullable();
+            // $table->foreign('unit_id')->references('id')->on('unit');
+            $table->foreignId('unit_id')->after('photo')->constrained();
         });
     }
 
@@ -27,6 +27,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('unit');
+        Schema::table('stock', function (Blueprint $table) {
+            $table->dropColumn('unit_id');
+        });
     }
 };

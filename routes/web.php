@@ -63,6 +63,6 @@ Route::get('/keluar', function () {
     return redirect('/');
 });
 
-// Route::controller(StaffController::class)->group(function () {
-//     Route::get('staff', 'index');
-// });
+Route::controller(StaffController::class)->group(function () {
+    Route::get('staff', 'index');
+});
