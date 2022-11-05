@@ -26,13 +26,13 @@
             <!-- ============================================================== -->
             <!-- toggle and nav items -->
             <!-- ============================================================== -->
-            <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
-              href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+            {{-- <a class="nav-toggler waves-effect waves-light text-dark d-block md-none"
+              href="javascript:void(0)"></a> --}}
         </div>
         <!-- ============================================================== -->
         <!-- End Logo -->
         <!-- ============================================================== -->
-        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5" style="background-color:red;">
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
             <!-- ============================================================== -->
