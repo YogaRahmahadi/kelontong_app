@@ -14,14 +14,18 @@
                         <span class="hide-menu">Profile</span>
                     </a>
                 </li>
-
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/staff/stock" aria-expanded="false">
                         <i class="fa fa-table" aria-hidden="true"></i>
                         <span class="hide-menu">Stock</span>
                     </a>
                 </li>
-
+                <li class="sidebar-item">
+                    <a class="sidebar-link waves-effect waves-dark sidebar-link" href="/staff/transaksi" aria-expanded="false">
+                        <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                        <span class="hide-menu">Transaksi</span>
+                    </a>
+                </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link waves-effect waves-dark sidebar-link" href="{{ route('logout') }}"
                         onclick="event.preventDefault();

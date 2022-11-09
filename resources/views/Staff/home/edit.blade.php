@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('staff.layouts.app')
 
 @section('content')
 
@@ -37,7 +37,7 @@
                                 </div>
                                 @endif
 
-                                <form method="post" action="/admin/users/{{ Auth::user()->id }}" enctype="multipart/form-data" id="myForm">
+                                <form method="post" action="/staff/users/{{ Auth::user()->id }}" enctype="multipart/form-data" id="myForm">
 
                                     @csrf
                                     @method('PUT')

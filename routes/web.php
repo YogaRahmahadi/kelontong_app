@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\AdminController as HomeController;
 use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Admin\LabaController;
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Staff\StockController as StaffStockController;
+use App\Http\Controllers\Staff\TransaksiController as StaffTransaksiController;
 
 
 /*
@@ -36,7 +37,7 @@ Auth::routes();
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('admin')->group(function () {
-        Route::resource('home', HomeController::class);
+        Route::resource('home', AdminController::class);
         Route::resource('users', UserController::class);
         Route::resource('stock', StockController::class);
         Route::resource('transaksi', TransaksiController::class);
@@ -46,11 +47,11 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::controller(StaffController::class)->group(function () {
-        Route::get('staff', 'index');
+    Route::prefix('staff')->group(function () {
+        Route::resource('home', StaffController::class);
+        Route::resource('stock', StaffStockController::class);
+        Route::resource('transaksi', StaffTransaksiController::class);
     });
-    Route::resource('home', HomeController::class);
-    Route::resource('stock', StaffStockController::class);
 });
 
 Route::get('/keluar', function () {

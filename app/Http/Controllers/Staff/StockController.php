@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Staff;
 
 use App\Models\Stock;
 use Illuminate\Http\Request;
@@ -18,7 +18,7 @@ class StockController extends Controller
     {
         $stock = Stock::all(); // Mengambil semua isi tabel
         $paginate = Stock::orderBy('id', 'asc')->paginate(3);
-        return view('admin.stock.index', ['stock' => $stock, 'paginate' => $paginate]);
+        return view('staff.stock.index', ['stocks' => $stock, 'paginate' => $paginate]);
     }
 
     /**
@@ -28,7 +28,7 @@ class StockController extends Controller
      */
     public function create()
     {
-        return view('admin.stock.create');
+        return view('staff.stock.create');
     }
 
     /**
@@ -44,19 +44,27 @@ class StockController extends Controller
             'nama_barang' => 'required',
             'hargabeli' => 'required',
             'hargajual' => 'required',
-            'keterangan' => 'required',
+            'volume' => 'required',
+            'satuan' => 'required',
+            'photo' => 'required',
         ]);
+
+        if ($request->file('photo')) {
+            $image_name = $request->file('photo')->store('stocks', 'public');
+        }
 
         //fungsi eloquent untuk menambah data
         Stock::create([
             'nama_barang' => $request->nama_barang,
             'hargabeli' => $request->hargabeli,
             'hargajual' => $request->hargajual,
-            'keterangan' => $request->keterangan,
+            'volume' => $request->volume,
+            'satuan' => $request->satuan,
+            'photo' => $image_name,
         ]);
 
         //jika data berhasil ditambahkan, akan kembali ke halaman utama
-        return redirect()->to('/admin/stock')
+        return redirect()->to('/staff/stock')
             ->with('success', 'Stock Berhasil Ditambahkan');
     }
 
@@ -69,7 +77,7 @@ class StockController extends Controller
     public function show($id_stock)
     {
         $stock = Stock::where('id_stock', $id_stock)->first();
-        return view('stock.detail', compact('Stock'));
+        return view('stock.detail', compact('Stocks'));
     }
 
     /**
@@ -80,8 +88,8 @@ class StockController extends Controller
      */
     public function edit($id_stock)
     {
-        $stock = DB::table('stock')->where('id', $id_stock)->first();
-        return view('admin.stock.edit', compact('stock'));
+        $stock = DB::table('stocks')->where('id', $id_stock)->first();
+        return view('staff.stock.edit', compact('stocks'));
     }
 
     /**
@@ -98,24 +106,30 @@ class StockController extends Controller
             'nama_barang' => 'required',
             'hargabeli' => 'required',
             'hargajual' => 'required',
-            'keterangan' => 'required',
+            'volume' => 'required',
+            'satuan' => 'required',
+            'photo' => 'required',
         ]);
 
         $stock = Stock::where('id', $id_stock)->first();
+        if ($request->file('photo')) {
+            $image_name = $request->file('photo')->store('stocks', 'public');
+        }
         //fungsi eloquent untuk mengupdate data inputan kita
         Stock::where('id', $id_stock)
             ->update([
                 'nama_barang' => $request->nama_barang,
                 'hargabeli' => $request->hargabeli,
                 'hargajual' => $request->hargajual,
-                'keterangan' => $request->keterangan,
+                'volume' => $request->volume,
+                'satuan' => $request->satuan,
+                'photo' => ($image_name == null) ? $stock->photo : $image_name,
             ]);
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
-        return redirect()->to('/admin/stock')
+        return redirect()->to('/staff/stock')
             ->with('success', 'Stock Berhasil Diupdate');
     }
-
     /**
      * Remove the specified resource from storage.
      *
@@ -126,7 +140,7 @@ class StockController extends Controller
     {
         //fungsi eloquent untuk menghapus data
         Stock::where('id', $id_stock)->delete();
-        return redirect()->to('/admin/stock')
-            ->with('success', 'stock Berhasil Dihapus');
+        return redirect()->to('/staff/stock')
+            ->with('success', 'Stock Berhasil Dihapus');
     }
 }

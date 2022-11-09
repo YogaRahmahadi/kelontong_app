@@ -2,8 +2,8 @@
 <!-- Topbar header - style you can find in pages.scss -->
 <!-- ============================================================== -->
 <header class="topbar" data-navbarbg="skin5">
-    <nav class="navbar top-navbar navbar-expand-md navbar-dark">
-        <div class="navbar-header" data-logobg="skin6">
+    <nav class="navbar top-navbar navbar-expand-md navbar-dark" >
+        <div class="navbar-header" style="background-color:white;" data-logobg="skin6">
         <!-- ============================================================== -->
         <!-- Logo -->
         <!-- ============================================================== -->
@@ -11,7 +11,7 @@
               <!-- Logo icon -->
               <b class="logo-icon">
                 <!-- Dark Logo icon -->
-                <img src="{{ asset('assets/plugins/images/logo-icon.png') }}" alt="homepage" />
+                <img src="{{ asset('assets/plugins/images/logo-klontong.png') }}" class="w-100" alt="homepage" />
               </b>
               <!--End Logo icon -->
               {{-- <!-- Logo text -->
@@ -26,13 +26,13 @@
             <!-- ============================================================== -->
             <!-- toggle and nav items -->
             <!-- ============================================================== -->
-            <a class="nav-toggler waves-effect waves-light text-dark d-block d-md-none"
-              href="javascript:void(0)"><i class="ti-menu ti-close"></i></a>
+            {{-- <a class="nav-toggler waves-effect waves-light text-dark d-block md-none"
+              href="javascript:void(0)"></a> --}}
         </div>
         <!-- ============================================================== -->
         <!-- End Logo -->
         <!-- ============================================================== -->
-        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5">
+        <div class="navbar-collapse collapse" id="navbarSupportedContent" data-navbarbg="skin5" style="background-color:red;">
             <!-- ============================================================== -->
             <!-- Right side toggle and nav items -->
             <!-- ============================================================== -->

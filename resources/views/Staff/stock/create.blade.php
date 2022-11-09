@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('staff.layouts.app')
 
 @section('content')
 
@@ -36,8 +36,8 @@
                                     </ul>
                                 </div>
                                 @endif
-            
-                                <form method="post" action="/admin/stock" enctype="multipart/form-data" id="myForm">
+
+                                <form method="post" action="/staff/stock" enctype="multipart/form-data" id="myForm">
                                     @csrf
                                     <div class="form-group">
                                         <label for="nama_barang">Nama barang</label>
@@ -48,17 +48,34 @@
                                         <label for="hargabeli">Harga Beli</label>
                                         <input type="text" name="hargabeli" class="form-control" id="hargabeli"  aria-describedby="hargabeli" >
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="hargajual">Harga Jual</label>
                                         <input type="text" name="hargajual" class="form-control" id="hargajual" aria-describedby="hargajual" >
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="keterangan">Keterangan</label>
-                                        <textarea type="text" name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" ></textarea>
+                                        <label for="File">Foto</label>
+                                        <input type="file" name="photo" class="form-control" id="photo" ariadescribedby="photo" >
                                     </div>
-                                    
+
+                                    <div class="form-group">
+                                        <label for="volume">volume</label>
+                                        <input type="text" name="volume" class="form-control" id="volume" aria-describedby="volume" >
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="unit" class="col-md-4 col-form-label">Unit</label>
+
+                                        <div class="col-md-6">
+                                            <select name="unit" id="unit" class="form-control">
+                                                <option value="">== Select Unit ==</option>
+                                                @foreach ($unit as $id => $satuan)
+                                                    <option value="{{ $id }}">{{ $satuan }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>
                             </div>

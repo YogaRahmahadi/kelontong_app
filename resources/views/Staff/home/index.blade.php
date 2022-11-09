@@ -1,4 +1,4 @@
-@extends('admin.layouts.app')
+@extends('staff.layouts.app')
 
 @section('content')
 
@@ -29,7 +29,7 @@
               <div class="col-lg-12 col-xlg-3 col-md-12">
                   <div class="white-box">
                       <div class="user-bg"> <img width="100%" alt="user" src="{{ asset('assets/plugins/images/large/background.jpg') }}">
-                          <div class="overlay-box">
+                          <div class="overlay-box" style="background-color:red;">
                               <div class="user-content">
                                   <a href="javascript:void(0)"><img src="{{ asset('assets/plugins/images/users/user.jpg') }}"
                                           class="thumb-lg img-circle" alt="img"></a>
@@ -38,13 +38,19 @@
                               </div>
                           </div>
                       </div>
-                      
+
                   </div>
               </div>
               <!-- Column -->
               <!-- Column -->
               <div class="col-lg-12 col-xlg-9 col-md-12">
-                  <div class="card">
+                    <style type="text/css">
+                        .btn-custom {
+                            color: #ffffff;
+                            background-color: #FF0A0A;
+                        }
+                    </style>
+                    <div class="card">
                       <div class="card-body">
                               <div class="form-group mb-4">
                                   <label class="col-md-12 p-0">Name</label>
@@ -70,14 +76,14 @@
                                   <div class="col-md-12 border-bottom p-0">
                                       <input type="password" value="password" class="form-control p-0 border-0" readonly></div>
                               </div>
-                              
+
                               <div class="form-group mb-4">
                                   <div class="col-sm-12">
-                                      <a href="/staff/home/{{ Auth::user()->id }}/edit" class="btn btn-success">Update Profile</a>
+                                      <a href="/staff/home/{{ Auth::user()->id }}/edit" class="btn btn-custom">Update Profile</a>
                                   </div>
                               </div>
-                      </div>
-                  </div>
+                        </div>
+                    </div>
               </div>
               <!-- Column -->
           </div>

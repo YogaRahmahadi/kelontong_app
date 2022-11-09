@@ -8,7 +8,7 @@
         <div class="page-breadcrumb bg-white">
           <div class="row align-items-center">
               <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                  <h4 class="page-title">Edit Stock</h4>
+                  <h4 class="page-title">Konfirmasi Transaksi</h4>
               </div>
           </div>
           <!-- /.col-lg-12 -->
@@ -37,42 +37,31 @@
                                 </div>
                                 @endif
 
-                                <form method="post" action="/staff/stock/{{ $stock->id }}" enctype="multipart/form-data" id="myForm">
+                                <form method="post" action="/staff/transaksi" enctype="multipart/form-data" id="myForm">
 
                                     @csrf
-                                    @method('PUT')
 
                                     <div class="form-group">
-                                        <label for="nama_barang">Nama barang</label>
-                                        <input type="text" name="nama_barang" class="form-control" id="nama_barang"  aria-describedby="nama_barang" >
+                                        <label for="id">ID Transaksi</label>
+                                        <input type="text" name="id_transaksi" class="form-control" id="id" value="{{ $transaksi->id }}" aria-describedby="id" readonly>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="hargabeli">Harga Beli</label>
-                                        <input type="text" name="hargabeli" class="form-control" id="hargabeli"  aria-describedby="hargabeli" >
+                                        <label for="tanggal">Tanggal</label>
+                                        <input type="number" name="tanggal" class="form-control" id="tanggal" value="{{ $transaksi->total }}" aria-describedby="tanggal" readonly>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="hargajual">Harga Jual</label>
-                                        <input type="text" name="hargajual" class="form-control" id="hargajual" aria-describedby="hargajual" >
+                                        <label for="total">Total</label>
+                                        <input type="number" name="total" class="form-control" id="total" value="{{ $transaksi->total }}" aria-describedby="total" readonly>
                                     </div>
 
                                     <div class="form-group">
-                                        <label for="photo">Foto</label>
-                                        <input type="file" name="photo" class="form-control" id="photo" value="{{ $stock->photo }}" aria-describedby="photo" >
+                                        <label for="keterangan">Keterangan</label>
+                                        <textarea name="keterangan" class="form-control" id="keterangan" aria-describedby="keterangan" ></textarea>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="volume">volume</label>
-                                        <input type="text" name="volume" class="form-control" id="volume" aria-describedby="volume" >
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label for="unit">Unit</label>
-                                        <select type="text" name="unit" class="form-control" id="unit" aria-describedby="unit" >
-                                    </div>
-
-                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Sudah Terbayar</button>
                                 </form>
                         </div>
                     </div>

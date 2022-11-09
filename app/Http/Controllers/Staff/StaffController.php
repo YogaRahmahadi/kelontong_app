@@ -100,7 +100,7 @@ class StaffController extends Controller
             ]);
         //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('staff.home.index')
-            ->with('success', 'staff Berhasil Diupdate');
+            ->with('success', 'Staff Berhasil Diupdate');
     }
 
     /**
