@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Stock;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\DB;
@@ -26,9 +27,13 @@ class StockController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        return view('admin.stock.create');
+        $unit = Unit::all();
+
+        return view('admin.stock.create', compact([
+            'satuan'
+        ]));
     }
 
     /**

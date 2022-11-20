@@ -17,4 +17,9 @@ class Unit extends Model
     protected $fillable = [
         'satuan',
     ];
+
+    public function stock()
+    {
+        return $this->hasMany(Stock::class, 'id', 'id');
+    }
 }
