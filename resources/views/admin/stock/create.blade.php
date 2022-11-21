@@ -36,7 +36,7 @@
                                     </ul>
                                 </div>
                                 @endif
-            
+
                                 <form method="post" action="/admin/stock" enctype="multipart/form-data" id="myForm">
                                     @csrf
                                     <div class="form-group">
@@ -48,7 +48,7 @@
                                         <label for="hargabeli">Harga Beli</label>
                                         <input type="text" name="hargabeli" class="form-control" id="hargabeli"  aria-describedby="hargabeli" >
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="hargajual">Harga Jual</label>
                                         <input type="text" name="hargajual" class="form-control" id="hargajual" aria-describedby="hargajual" >
@@ -66,12 +66,12 @@
 
                                     <div class="form-group row">
                                         <label for="unit" class="col-md-4 col-form-label">Unit</label>
-                                
+
                                         <div class="col-md-6">
                                             <select name="unit" id="unit" class="form-control">
                                                 <option value="">== Select Unit ==</option>
-                                                @foreach ($unit as $id => $satuan)
-                                                    <option value="{{ $id }}">{{ $satuan }}</option>
+                                                @foreach ($unit as $id)
+                                                    <option value="{{ $id }}">{{ $id->satuan }}</option>
                                                 @endforeach
                                             </select>
                                         </div>

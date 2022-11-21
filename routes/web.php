@@ -1,13 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\StockController;
-use App\Http\Controllers\Admin\TransaksiController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\LabaController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Staff\StaffController;
+use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Staff\StockController as StaffStockController;
 use App\Http\Controllers\Staff\TransaksiController as StaffTransaksiController;
 
