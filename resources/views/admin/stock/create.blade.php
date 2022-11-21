@@ -66,12 +66,14 @@
 
                                     <div class="form-group row">
                                         <label for="unit" class="col-md-4 col-form-label">Unit</label>
-
+                                        <label for="satuan" class="col-md-4 col-form-label">Unit</label>
                                         <div class="col-md-6">
-                                            <select name="unit" id="unit" class="form-control">
+                                            <select name="satuan" id="satuan" class="form-control" aria-describedby="satuan">
                                                 <option value="">== Select Unit ==</option>
                                                 @foreach ($unit as $id)
                                                     <option value="{{ $id }}">{{ $id->satuan }}</option>
+                                                @foreach ($unit as $row)
+                                                    <option value="{{ $row->id }}">{{ $row->satuan }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
