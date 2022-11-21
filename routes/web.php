@@ -30,12 +30,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/admin/home', function () {
-//     return view('admin.home.index');
-// });
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::resource('home', AdminController::class);
