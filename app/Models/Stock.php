@@ -19,12 +19,12 @@ class Stock extends Model
         'hargabeli',
         'hargajual',
         'photo',
-        'satuan',
+        'unit_id',
         'volume',
     ];
 
     public function units()
     {
-        return $this->belongsTo(unit::class, 'satuan', 'satuan');
+        return $this->belongsTo(unit::class, 'unit_id', 'id');
     }
 }

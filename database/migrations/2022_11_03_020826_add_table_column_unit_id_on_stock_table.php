@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('stocks', function (Blueprint $table) {
             // $table->bigIncrements('unit_id')->after('photo')->nullable();
-            // $table->foreign('unit_id')->references('id')->on('unit');
+            // $table->foreign('satuan')->references('satuan')->on('unit');
             $table->foreignId('unit_id')->after('photo')->constrained();
         });
     }
@@ -27,7 +27,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('stock', function (Blueprint $table) {
+        Schema::table('stocks', function (Blueprint $table) {
             $table->dropColumn('unit_id');
         });
     }
