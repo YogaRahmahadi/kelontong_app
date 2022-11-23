@@ -33,9 +33,9 @@
                                             <th class="border-top-0" width="100px">Nama Barang</th>
                                             <th class="border-top-0" width="100px">Harga Beli</th>
                                             <th class="border-top-0" width="100px">Harga Jual</th>
+                                            <th class="border-top-0" width="200px">Foto</th>
                                             <th class="border-top-0" width="100px">Volume</th>
                                             <th class="border-top-0" width="100px">Unit ID</th>
-                                            <th class="border-top-0" width="200px">Foto</th>
                                             <th class="border-top-0" width="100px">Action</th>
                                         </tr>
                                     </thead>
@@ -46,11 +46,11 @@
                                             <td>{{ $item->nama_barang }}</td>
                                             <td>{{ $item->hargabeli}}</td>
                                             <td>{{ $item->hargajual}}</td>
-                                            <td>{{ $item->volume }}</td>
-                                            <td>{{ $item->unit_id }}</td>
                                             <td>
                                                 <img src="{{ asset('storage/'.$item->photo) }}" class="w-50" alt="">
                                             </td>
+                                            <td>{{ $item->volume }}</td>
+                                            <td>{{ $item->unit_id }}</td>
                                             <td>
                                                 <form action="/admin/stock/{{ $item->id }}" method="post">
 
