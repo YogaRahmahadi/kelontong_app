@@ -30,10 +30,10 @@ class StockController extends Controller
     public function create(Request $request)
     {
         $unit = Unit::all();
-
-        return view('admin.stock.create', compact([
-            'satuan'
-        ]));
+        return view('admin.stock.create', compact('unit'));
+        // return view('admin.stock.create', compact([
+        //     'satuan'
+        // ]));
     }
 
     /**

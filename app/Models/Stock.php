@@ -19,8 +19,8 @@ class Stock extends Model
         'hargabeli',
         'hargajual',
         'photo',
-        'satuan',
         'volume',
+        'satuan',
     ];
 
     public function units()
