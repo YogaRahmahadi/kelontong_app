@@ -44,17 +44,17 @@
 
                                     <div class="form-group">
                                         <label for="nama_barang">Nama barang</label>
-                                        <input type="text" name="nama_barang" class="form-control" id="nama_barang"  aria-describedby="nama_barang" >
+                                        <input type="text" name="nama_barang" class="form-control" id="nama_barang" value="{{ $stock->nama_barang }}" aria-describedby="nama_barang" >
                                     </div>
 
                                     <div class="form-group">
                                         <label for="hargabeli">Harga Beli</label>
-                                        <input type="text" name="hargabeli" class="form-control" id="hargabeli"  aria-describedby="hargabeli" >
+                                        <input type="text" name="hargabeli" class="form-control" id="hargabeli" value="{{ $stock->hargabeli }}" aria-describedby="hargabeli" >
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="hargajual">Harga Jual</label>
-                                        <input type="text" name="hargajual" class="form-control" id="hargajual" aria-describedby="hargajual" >
+                                        <input type="text" name="hargajual" class="form-control" id="hargajual" value="{{ $stock->hargajual }}" aria-describedby="hargajual" >
                                     </div>
 
                                     <div class="form-group">
@@ -64,12 +64,19 @@
 
                                     <div class="form-group">
                                         <label for="volume">volume</label>
-                                        <input type="text" name="volume" class="form-control" id="volume" aria-describedby="volume" >
+                                        <input type="text" name="volume" class="form-control" id="volume" value="{{ $stock->volume }}" aria-describedby="volume" >
                                     </div>
 
-                                    <div class="form-group">
-                                        <label for="unit">Unit</label>
-                                        <select type="text" name="unit" class="form-control" id="unit" aria-describedby="unit" >
+                                    <div class="form-group row">
+                                        <label for="unit_id" class="col-md-4 col-form-label">Satuan</label>
+                                        <div class="col-md-6">
+                                            <select name="unit_id" id="unit_id" value="{{ $stock->unit_id }}" class="form-control" aria-describedby="unit_id">
+                                                <option value="">== Select Satuan ==</option>
+                                                @foreach ($unit as $id)
+                                                    <option value="{{ $id->id }}">{{ $id->satuan }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
 
                                     <button type="submit" class="btn btn-primary">Submit</button>

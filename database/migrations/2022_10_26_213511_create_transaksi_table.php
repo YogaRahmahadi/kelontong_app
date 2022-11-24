@@ -17,8 +17,9 @@ class CreateTransaksiTable extends Migration
             $table->id();
             // $table->bigIncrements('stock_id')->nullable();
             // $table->foreign('stock_id')->references('id')->on('stock');
-            $table->foreignId('stock_id')->constrained();
-            $table->date('date_order');
+            $table->string('nama');
+            $table->date('tanggal');
+            $table->integer('volume');
             $table->float('total');
             $table->string('keterangan', 50);
             $table->timestamps();

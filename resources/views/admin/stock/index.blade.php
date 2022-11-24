@@ -23,42 +23,42 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <a href="/admin/stock/create" class="float-end btn btn-success">Tambah Data</a>
+                            <a href="/admin/stock/create" class="float-end btn btn-success text-light">Tambah Data</a>
                             <h3 class="box-title">Stock</h3>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
-                                            <th class="border-top-0">ID</th>
-                                            <th class="border-top-0">Nama Barang</th>
-                                            <th class="border-top-0">Harga Beli</th>
-                                            <th class="border-top-0">Harga Jual</th>
-                                            <th class="border-top-0">Volume</th>
-                                            <th class="border-top-0">Unit</th>
-                                            <th class="border-top-0">Foto</th>
-                                            <th class="border-top-0">Action</th>
+                                            <th class="border-top-0" width="50px">ID</th>
+                                            <th class="border-top-0" width="100px">Nama Barang</th>
+                                            <th class="border-top-0" width="100px">Harga Beli</th>
+                                            <th class="border-top-0" width="100px">Harga Jual</th>
+                                            <th class="border-top-0" width="200px">Foto</th>
+                                            <th class="border-top-0" width="100px">Volume</th>
+                                            <th class="border-top-0" width="100px">Unit ID</th>
+                                            <th class="border-top-0" width="100px">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($stocks as $item)    
+                                        @foreach ($stocks as $item)
                                         <tr>
                                             <td>{{ $item->id }}</td>
                                             <td>{{ $item->nama_barang }}</td>
                                             <td>{{ $item->hargabeli}}</td>
                                             <td>{{ $item->hargajual}}</td>
-                                            <td>{{ $item->volume }}</td>
-                                            <td>{{ $item->unit }}</td>
                                             <td>
                                                 <img src="{{ asset('storage/'.$item->photo) }}" class="w-50" alt="">
                                             </td>
+                                            <td>{{ $item->volume }}</td>
+                                            <td>{{ $item->unit_id }}</td>
                                             <td>
                                                 <form action="/admin/stock/{{ $item->id }}" method="post">
-                                                    
-                                                    <a href="/admin/stock/{{ $item->id }}/edit" class="btn btn-primary">Edit</a>
-                                                    
+
+                                                    <a href="/admin/stock/{{ $item->id }}/edit" class="btn btn-primary text-light">Edit</a>
+
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit" class="btn btn-primary">Delete</button>
+                                                    <button type="submit" class="btn btn-danger text-light">Delete</button>
                                                 </form>
                                             </td>
                                         </tr>

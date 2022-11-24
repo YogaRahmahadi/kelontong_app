@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Models\Stock;
 use App\Models\Transaksi;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
@@ -28,7 +29,9 @@ class TransaksiController extends Controller
      */
     public function create()
     {
-        return view('transaksi.create');
+        // return view('transaksi.create');
+        $stock_id = Stock::all();
+        return view('admin.transaksi.create');
     }
 
     /**
@@ -41,8 +44,9 @@ class TransaksiController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'id_stock' => 'required',
+            'nama' => 'required',
             'tanggal' => 'required',
+            'volume' => 'required',
             'total' => 'required',
             'keterangan' => 'required',
         ]);
@@ -87,15 +91,17 @@ class TransaksiController extends Controller
     {
         //melakukan validasi data
         $request->validate([
-            'id_stock' => 'required',
+            'nama' => 'required',
             'tanggal' => 'required',
+            'volume' => 'required',
             'total' => 'required',
             'keterangan' => 'required',
         ]);
         //fungsi eloquent untuk mengupdate data inputan kita
         Transaksi::where('id', $id_transaksi)
             ->update([
-                'stock_id' => $request->id_stock,
+                'nama' => $request->nama,
+                'volume' => $request->volume,
                 'tanggal' => $request->tanggal,
                 'total' => $request->total,
                 'keterangan' => $request->keterangan,
@@ -114,7 +120,7 @@ class TransaksiController extends Controller
     public function destroy($id_transaksi)
     {
         //fungsi eloquent untuk menghapus data
-        Transaksi::where('id_transaksi', $id_transaksi)->delete();
+        Transaksi::where('id', $id_transaksi)->delete();
         return redirect()->route('transaksi.index')
             ->with('success', 'transaksi Berhasil Dihapus');
     }

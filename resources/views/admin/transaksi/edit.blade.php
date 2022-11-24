@@ -47,8 +47,13 @@
                                     </div>
 
                                     <div class="form-group">
+                                        <label for="nama">Nama Barang</label>
+                                        <input type="text" name="nama_transaksi" class="form-control" id="nama" value="{{ $transaksi->nama }}" aria-describedby="id" readonly>
+                                    </div>
+
+                                    <div class="form-group">
                                         <label for="tanggal">Tanggal</label>
-                                        <input type="number" name="tanggal" class="form-control" id="tanggal" value="{{ $transaksi->total }}" aria-describedby="tanggal" readonly>
+                                        <input type="date" name="tanggal" class="form-control" id="tanggal" value="{{ $transaksi->total }}" aria-describedby="tanggal" readonly>
                                     </div>
                                     
                                     <div class="form-group">

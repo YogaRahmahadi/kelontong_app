@@ -23,15 +23,16 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="white-box">
-                            <a href="/admin/laporan" class="float-end btn btn-success">Cetak Laporan</a>
+                            <a href="/admin/transaksi/create" class="float-end btn btn-success">Tambah Data</a>
                             <h3 class="box-title">Data Transaksi</h3>
                             <div class="table-responsive">
                                 <table class="table text-nowrap">
                                     <thead>
                                         <tr>
                                             <th class="border-top-0">ID</th>
-                                            <th class="border-top-0">ID Barang</th>
+                                            <th class="border-top-0">Nama Barang</th>
                                             <th class="border-top-0">Tanggal</th>
+                                            <th class="border-top-0" width="100px">Volume</th>
                                             <th class="border-top-0">Total</th>
                                             <th class="border-top-0">Keterangan</th>
                                             <th class="border-top-0">Action</th>
@@ -41,12 +42,20 @@
                                         @foreach ($transaksi as $item)    
                                         <tr>
                                             <td>{{ $item->id }}</td>
-                                            <td>{{ $item->stock_id }}</td>
-                                            <td>{{ $item->date_order }}</td>
+                                            <td>{{ $item->nama }}</td>
+                                            <td>{{ $item->tanggal }}</td>
+                                            <td>{{ $item->volume }}</td>
                                             <td>{{ $item->total }}</td>
                                             <td>{{ $item->keterangan }}</td>
                                             <td>
-                                                <a href="/admin/transaksi/{{ $item->id }}/edit" class="btn btn-primary">Terbayar ?</a>
+                                                <form action="/admin/transaksi/{{ $item->id }}" method="post">
+
+                                                    <a href="/admin/transaksi/{{ $item->id }}/edit" class="btn btn-primary text-light">Edit</a>
+
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <button type="submit" class="btn btn-danger text-light">Delete</button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

@@ -15,8 +15,9 @@ class Transaksi extends Model
      * @var array
      */
     protected $fillable = [
-        'stock_id',
+        'nama',
         'tanggal',
+        'volume',
         'total',
         'keterangan',
     ];

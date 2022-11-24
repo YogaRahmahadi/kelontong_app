@@ -1,13 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\UserController;
-use App\Http\Controllers\Admin\StockController;
-use App\Http\Controllers\Admin\TransaksiController;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Admin\LabaController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\StockController;
 use App\Http\Controllers\Staff\StaffController;
+use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Staff\StockController as StaffStockController;
 use App\Http\Controllers\Staff\TransaksiController as StaffTransaksiController;
 
@@ -29,12 +30,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/admin/home', function () {
-//     return view('admin.home.index');
-// });
-
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::prefix('admin')->group(function () {
         Route::resource('home', AdminController::class);
@@ -46,13 +41,13 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     });
 });
 
-Route::middleware('auth')->group(function () {
-    Route::prefix('staff')->group(function () {
-        Route::resource('home', StaffController::class);
-        Route::resource('stock', StaffStockController::class);
-        Route::resource('transaksi', StaffTransaksiController::class);
-    });
-});
+// Route::middleware('auth')->group(function () {
+//     Route::prefix('staff')->group(function () {
+//         Route::resource('home', StaffController::class);
+//         Route::resource('stock', StaffStockController::class);
+//         Route::resource('transaksi', StaffTransaksiController::class);
+//     });
+// });
 
 Route::get('/keluar', function () {
     Auth::logout();

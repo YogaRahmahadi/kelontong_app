@@ -31,9 +31,6 @@ class StockController extends Controller
     {
         $unit = Unit::all();
         return view('admin.stock.create', compact('unit'));
-        // return view('admin.stock.create', compact([
-        //     'satuan'
-        // ]));
     }
 
     /**
@@ -50,7 +47,7 @@ class StockController extends Controller
             'hargabeli' => 'required',
             'hargajual' => 'required',
             'volume' => 'required',
-            'satuan' => 'required',
+            'unit_id' => 'required',
             'photo' => 'required',
         ]);
 
@@ -64,7 +61,7 @@ class StockController extends Controller
             'hargabeli' => $request->hargabeli,
             'hargajual' => $request->hargajual,
             'volume' => $request->volume,
-            'satuan' => $request->satuan,
+            'unit_id' => $request->unit_id,
             'photo' => $image_name,
         ]);
 
@@ -82,7 +79,7 @@ class StockController extends Controller
     public function show($id_stock)
     {
         $stock = Stock::where('id_stock', $id_stock)->first();
-        return view('stock.detail', compact('Stocks'));
+        return view('stock.detail', compact('stock'));
     }
 
     /**
@@ -94,7 +91,8 @@ class StockController extends Controller
     public function edit($id_stock)
     {
         $stock = DB::table('stocks')->where('id', $id_stock)->first();
-        return view('admin.stock.edit', compact('stocks'));
+        $unit = Unit::all();
+        return view('admin.stock.edit', compact('stock', 'unit'));
     }
 
     /**
@@ -112,7 +110,7 @@ class StockController extends Controller
             'hargabeli' => 'required',
             'hargajual' => 'required',
             'volume' => 'required',
-            'satuan' => 'required',
+            'unit_id' => 'required',
             'photo' => 'required',
         ]);
 
@@ -127,7 +125,7 @@ class StockController extends Controller
                 'hargabeli' => $request->hargabeli,
                 'hargajual' => $request->hargajual,
                 'volume' => $request->volume,
-                'satuan' => $request->satuan,
+                'unit_id' => $request->unit_id,
                 'photo' => ($image_name == null) ? $stock->photo : $image_name,
             ]);
 
