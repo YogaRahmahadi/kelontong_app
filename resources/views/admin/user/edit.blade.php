@@ -56,15 +56,15 @@
                                         <label for="Nama">Phone Number</label>
                                         <input type="text" name="no_hp" class="form-control" id="no_hp" value="{{ $user->no_hp }}" aria-describedby="no_hp" >
                                     </div>
-                                    
+
                                     <div class="form-group">
                                         <label for="Nama">Role</label>
-                                        <select class="form-control" type="Kelas" name="Kelas">
-                                            <option value="">admin</option>
-                                            <option value="">pegawai</option>
+                                        <select class="form-control" type="role" name="role">
+                                            <option value="">Admin</option>
+                                            <option value="">Staff</option>
                                         </select>
                                     </div>
-                                    
+
 
                                     <button type="submit" class="btn btn-primary">Submit</button>
                                 </form>

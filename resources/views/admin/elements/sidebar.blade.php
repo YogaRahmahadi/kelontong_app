@@ -49,10 +49,6 @@
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf
                     </form>
-                    {{-- <a class="sidebar-link waves-effect waves-dark sidebar-link" href="" aria-expanded="false">
-                        <i class="fa fa-minus" aria-hidden="true"></i>
-                        <span class="hide-menu">Logout</span>
-                    </a> --}}
                 </li>
             </ul>
         </nav>

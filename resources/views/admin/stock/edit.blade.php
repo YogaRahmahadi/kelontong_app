@@ -70,7 +70,7 @@
                                     <div class="form-group row">
                                         <label for="unit_id" class="col-md-4 col-form-label">Satuan</label>
                                         <div class="col-md-6">
-                                            <select name="unit_id" id="unit_id" value="{{ $stock->unit_id }}" class="form-control" aria-describedby="unit_id">
+                                            <select name="unit_id" id="unit_id" value="{{ $stock->unit_id }}" class="form-control" aria-describedby="unit_id" >
                                                 <option value="">== Select Satuan ==</option>
                                                 @foreach ($unit as $id)
                                                     <option value="{{ $id->id }}">{{ $id->satuan }}</option>
