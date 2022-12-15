@@ -11,6 +11,7 @@ use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Admin\TransaksiController;
 use App\Http\Controllers\Staff\StockController as StaffStockController;
 use App\Http\Controllers\Staff\TransaksiController as StaffTransaksiController;
+use Illuminate\Support\Facades\Artisan;
 
 
 /*
@@ -61,4 +62,19 @@ Route::get('/keluar', function () {
 
 Route::controller(StaffController::class)->group(function () {
     Route::get('staff', 'index');
+});
+
+Route::get('/config', function () {
+    Artisan::call(
+        'migrate:fresh',
+        [
+            '--force' => true
+        ]
+    );
+    Artisan::call(
+        'db:seed',
+        [
+            '--force' => true
+        ]
+    );
 });
